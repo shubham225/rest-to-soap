@@ -19,7 +19,8 @@ public class RestToSoapController {
             method = RequestMethod.POST,
             path = "/{endpoint}"
     )
-    public String processSOAPRequest(@PathVariable String endpoint) {
+    public String processSOAPRequest(@PathVariable String endpoint,
+                                     String request) {
         return restToSoapService.callSOAPService(endpoint);
     }
 }
