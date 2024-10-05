@@ -39,6 +39,16 @@
 			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
@@ -62,6 +72,27 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.sun.xml.ws</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<packageName>com.connector.resttosoap.schemas</packageName>
+					<wsdlUrls>
+						<wsdlUrl>http://www.dneonline.com/calculator.asmx?wsdl</wsdlUrl>
+					</wsdlUrls>
+					<sourceDestDir>${project.basedir}/src/main/java</sourceDestDir>
+					<destDir>${classesDir}</destDir>
+					<extension>true</extension>
 				</configuration>
 			</plugin>
 		</plugins>
